@@ -94,7 +94,7 @@ public abstract class ThreadedAnvilChunkStorageMixin {
 
         int watchRadius = this.watchDistance;
         int watchRadiusIncr = watchRadius + 1;
-        int watchDiameter = watchRadius * 2;
+        int watchDiameter = watchRadiusIncr * 2;
 
         if (Math.abs(oldCenterX - newCenterX) <= watchDiameter && Math.abs(oldCenterZ - newCenterZ) <= watchDiameter) {
             int minX = Math.min(newCenterX, oldCenterX) - watchRadiusIncr;
