@@ -88,7 +88,7 @@ public class HopperHelper {
                 ItemStack singleItem = transferStack.split(1);
                 to.setStack(targetSlot, singleItem);
                 return true; //caller needs to call to.markDirty()
-            } else if (toStack.isOf(transferStack.getItem()) && toStack.getMaxCount() > (toCount = toStack.getCount()) && to.getMaxCountPerStack() > toCount && ItemStack.areNbtEqual(toStack, transferStack)) {
+            } else if (toStack.isOf(transferStack.getItem()) && toStack.getMaxCount() > (toCount = toStack.getCount()) && to.getMaxCountPerStack() > toCount && ItemStack.canCombine(toStack, transferStack)) {
                 transferStack.decrement(1);
                 toStack.increment(1);
                 return true; //caller needs to call to.markDirty()

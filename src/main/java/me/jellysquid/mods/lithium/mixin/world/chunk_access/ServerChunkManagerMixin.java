@@ -2,6 +2,7 @@ package me.jellysquid.mods.lithium.mixin.world.chunk_access;
 
 import com.mojang.datafixers.util.Either;
 import me.jellysquid.mods.lithium.common.world.chunk.ChunkHolderExtended;
+import net.minecraft.class_8563;
 import net.minecraft.server.world.*;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.ChunkPos;
@@ -125,7 +126,7 @@ public abstract class ServerChunkManagerMixin {
      */
     private Chunk getChunkBlocking(int x, int z, ChunkStatus status, boolean create) {
         final long key = ChunkPos.toLong(x, z);
-        final int level = 33 + ChunkStatus.getDistanceFromFull(status);
+        final int level = class_8563.method_51829(status);
 
         ChunkHolder holder = this.getChunkHolder(key);
 
@@ -178,7 +179,7 @@ public abstract class ServerChunkManagerMixin {
 
         // Create a future to load the chunk if none exists
         if (loadFuture == null) {
-            if (ChunkHolder.getTargetStatusForLevel(holder.getLevel()).isAtLeast(status)) {
+            if (class_8563.method_51827(holder.getLevel()).isAtLeast(status)) {
                 // Create a new future which upgrades the chunk from the previous status level to the desired one
                 CompletableFuture<Either<Chunk, ChunkHolder.Unloaded>> mergedFuture = this.threadedAnvilChunkStorage.getChunk(holder, status);
 
